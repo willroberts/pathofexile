@@ -21,6 +21,9 @@ code, commit your patch, and then send a pull request so I can merge it in.
 Getting Started / Sample Usage
 ------------------------------
 
+Leagues:
+
+
     >>> import pathofexile.api
     >>> import pprint
     >>> leagues = pathofexile.api.list_leagues()
@@ -39,6 +42,9 @@ Getting Started / Sample Usage
      ...
     ]
 
+Ladders:
+
+
     >>> import pathofexile.utilities
     >>> import pprint
     >>> ladder = pathofexile.utilities.cache_ladder('Standard')
@@ -56,8 +62,10 @@ Getting Started / Sample Usage
      ...
     ]
 
+Analytics:
+
+
     >>> import pathofexile.analytics
-    >>> import pprint
     >>> pathofexile.analytics.report('Standard')
 
     Standard
