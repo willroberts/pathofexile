@@ -120,6 +120,7 @@ def report(league):
     '''
     # get the ladder
     ladder = pathofexile.utilities.cache_ladder(league)
+    ladder_size = len(ladder)
 
     # print a header
     print
@@ -128,7 +129,7 @@ def report(league):
 
     # number of players with twitch accounts
     n = have_twitch_accounts(ladder)
-    print 'Have Twitch accounts: %d (%.2f%%)' % (n, percentage(n))
+    print 'Have Twitch accounts: %d (%.2f%%)' % (n, percentage(n, ladder_size=ladder_size))
 
     # number of players online
     n = are_online(ladder)
@@ -141,7 +142,7 @@ def report(league):
     # number of dead players
     n = are_dead(ladder)
     if 'HC' in league or 'Hardcore' in league:
-        print 'Dead: %d (%.2f%%)' % (n, percentage(n))
+        print 'Dead: %d (%.2f%%)' % (n, percentage(n, ladder_size=ladder_size))
 
     # level breakdown
     print 'Level breakdown:'
@@ -149,14 +150,14 @@ def report(league):
     for level_group in levels:
         minimum_level = level_group * 10
         n = levels[level_group]
-        print '    %d+: %d (%.2f%%)' % (minimum_level, n, percentage(n))
+        print '    %d+: %d (%.2f%%)' % (minimum_level, n, percentage(n, ladder_size=ladder_size))
 
     # class breakdown
     print 'Class breakdown:'
     classes = class_breakdown(ladder)
     for class_name in classes:
         n = classes[class_name]
-        print '    %s: %d (%.2f%%)' % (class_name, n, percentage(n))
+        print '    %s: %d (%.2f%%)' % (class_name, n, percentage(n, ladder_size=ladder_size))
 
     # challenge breakdown
     print 'Challenge completion breakdown:'
@@ -166,5 +167,5 @@ def report(league):
         print '    %d challenges completed: %d (%.2f%%)' % (
             completion_tier,
             n,
-            percentage(n),
+            percentage(n, ladder_size=ladder_size),
         )
