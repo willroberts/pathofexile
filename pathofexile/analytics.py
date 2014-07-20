@@ -21,7 +21,7 @@ def percentage(player_count, ladder_size=15000):
 
 
 def have_twitch_accounts(ladder):
-    ''' Returns the count and percentage of players who have Twitch accounts in
+    ''' Returns the count of players who have Twitch accounts in
     the given ladder.
 
     :param ladder: dict object from Ladder API (json response)
@@ -35,7 +35,7 @@ def have_twitch_accounts(ladder):
 
 
 def are_dead(ladder):
-    ''' Returns the count and percentage of players who are dead in the given
+    ''' Returns the count of players who are dead in the given
     ladder. Will always return 0 for non-hardcore leagues.
 
     :param ladder: dict object from Ladder API (json response)
@@ -49,7 +49,7 @@ def are_dead(ladder):
 
 
 def are_online(ladder):
-    ''' Returns the count and percentage of players who are online in the given
+    ''' Returns the count of players who are online in the given
     ladder.
 
     :param ladder: dict object from Ladder API (json response)
