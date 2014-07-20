@@ -108,8 +108,6 @@ Features
 Coming Soon / To Do
 -------------------
 * RRD storage and graphing for online player counts
-* Simplification of the codebase (will probably remove update.py)
-* Caching improvements
 * Improvements to ladder retrieval speed
 
 
