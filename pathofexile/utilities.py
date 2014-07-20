@@ -101,7 +101,8 @@ def cache_ladder(league, force_update=False):
     :param force_update: boolean to bypass caching/pickling
     :return: dict object from API JSON response
     '''
-    pickle_file = 'cache/%s' % (league.replace(' ', ''))
+    cache_dir = 'cache'
+    pickle_file = '{0}/{1}'.format(cache_dir, league.replace(' ', ''))
     if os.path.isfile(pickle_file) and not force_update:
         current_time = time.time()
         pickle_time = os.path.getmtime(pickle_file)
@@ -116,6 +117,8 @@ def cache_ladder(league, force_update=False):
         league,
     )
     ladder = get_ladder_concurrently(league)
+    if not os.path.exists(cache_dir):
+        os.mkdir(cache_dir)
     with open(pickle_file, 'w') as f:
         pickle.dump(ladder, f)
     return ladder
