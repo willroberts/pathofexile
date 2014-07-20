@@ -1,6 +1,8 @@
 import collections
 import time
 
+import pathofexile.utilities
+
 '''
 Path of Exile API Client
 - Analytics
@@ -108,13 +110,17 @@ def challenge_breakdown(ladder):
     return counter
 
 
-def report(league, ladder):
+def report(league):
     ''' Puts together the data from the functions in this file, and prints it
-    out to the user with some formatting.
+    out to the user with some formatting. Retrieves the ladder for the
+    requested league before showing analytics.
 
-    :param ladder: dict object from Ladder API (json response)
+    :param league: name of the league to show analytics for
     :return: None (just prints)
     '''
+    # get the ladder
+    ladder = pathofexile.utilities.cache_ladder(league)
+
     # print a header
     print
     print league
