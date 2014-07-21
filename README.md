@@ -105,18 +105,8 @@ Features
 * Analytics utilities for printing ladder statistics
 
 
-Coming Soon / To Do
--------------------
-* RRD storage and graphing for online player counts
-* Improvements to ladder retrieval speed
-
-
 Installing Dependencies
 -----------------------
-
-If you're on Ubuntu Linux, install the dependency packages:
-
-    sudo apt-get install libxml2-dev libcairo2-dev python-cairo-dev libpango1.0-dev librrd-dev
 
 Install virtualenv
 
