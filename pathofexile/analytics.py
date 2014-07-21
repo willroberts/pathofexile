@@ -62,24 +62,19 @@ def are_online(ladder):
     return count
 
 
-def level_breakdown(ladder):
+def level_breakdown(ladder, bin_size):
     ''' Returns a dictionary whose keys are level groupings which map to the
-    number of players who are have reached those levels. The keys range from 0
-    to 10, and they represent the following level groups:
-
-        0:  0 through  9        6: 60 through 69
-        1: 10 through 19        7: 70 through 79
-        2: 20 through 29        8: 80 through 89
-        3: 30 through 39        9: 90 through 99
-        4: 40 through 49       10: 100
-        5: 50 through 59
+    number of players who are have reached those levels. bin_size specifies
+    the number of levels per group and the key corresponds to the level group
+    starting at key*bin_size.
 
     :param ladder: dict object from Ladder API (json response)
+    :param bin_size: the number of levels per group
     :return: dictionary of 'level group': 'player count' mappings
     '''
     counter = collections.Counter()
     for entry in ladder:
-        counter[entry.get('character').get('level') / 10] += 1
+        counter[entry.get('character').get('level') / bin_size] += 1
     return counter
 
 
@@ -110,7 +105,7 @@ def challenge_breakdown(ladder):
     return counter
 
 
-def report(league):
+def report(league, level_bin_size=10):
     ''' Puts together the data from the functions in this file, and prints it
     out to the user with some formatting. Retrieves the ladder for the
     requested league before showing analytics.
@@ -146,11 +141,17 @@ def report(league):
 
     # level breakdown
     print 'Level breakdown:'
-    levels = level_breakdown(ladder)
-    for level_group in levels:
-        minimum_level = level_group * 10
+    levels = level_breakdown(ladder, level_bin_size)
+    for level_group in sorted(levels.keys()):
+        minimum_level = level_group * level_bin_size
+        max_level = minimum_level + level_bin_size - 1
+        max_level = max_level if max_level <= 100 else 100
         n = levels[level_group]
-        print '    %d+: %d (%.2f%%)' % (minimum_level, n, percentage(n, ladder_size=ladder_size))
+        if max_level == minimum_level:
+            print '    %d: %d (%.2f%%)' % (max_level, n, percentage(n, ladder_size=ladder_size))
+        else:
+            print '    %d-%d: %d (%.2f%%)' % (minimum_level, max_level,
+                                            n, percentage(n, ladder_size=ladder_size))
 
     # class breakdown
     print 'Class breakdown:'
