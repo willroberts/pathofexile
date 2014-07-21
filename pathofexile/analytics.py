@@ -21,7 +21,7 @@ def percentage(player_count, ladder_size=15000):
 
 
 def have_twitch_accounts(ladder):
-    ''' Returns the count and percentage of players who have Twitch accounts in
+    ''' Returns the count of players who have Twitch accounts in
     the given ladder.
 
     :param ladder: dict object from Ladder API (json response)
@@ -35,7 +35,7 @@ def have_twitch_accounts(ladder):
 
 
 def are_dead(ladder):
-    ''' Returns the count and percentage of players who are dead in the given
+    ''' Returns the count of players who are dead in the given
     ladder. Will always return 0 for non-hardcore leagues.
 
     :param ladder: dict object from Ladder API (json response)
@@ -49,7 +49,7 @@ def are_dead(ladder):
 
 
 def are_online(ladder):
-    ''' Returns the count and percentage of players who are online in the given
+    ''' Returns the count of players who are online in the given
     ladder.
 
     :param ladder: dict object from Ladder API (json response)
@@ -62,24 +62,19 @@ def are_online(ladder):
     return count
 
 
-def level_breakdown(ladder):
+def level_breakdown(ladder, bin_size):
     ''' Returns a dictionary whose keys are level groupings which map to the
-    number of players who are have reached those levels. The keys range from 0
-    to 10, and they represent the following level groups:
-
-        0:  0 through  9        6: 60 through 69
-        1: 10 through 19        7: 70 through 79
-        2: 20 through 29        8: 80 through 89
-        3: 30 through 39        9: 90 through 99
-        4: 40 through 49       10: 100
-        5: 50 through 59
+    number of players who are have reached those levels. bin_size specifies
+    the number of levels per group and the key corresponds to the level group
+    starting at key*bin_size.
 
     :param ladder: dict object from Ladder API (json response)
+    :param bin_size: the number of levels per group
     :return: dictionary of 'level group': 'player count' mappings
     '''
     counter = collections.Counter()
     for entry in ladder:
-        counter[entry.get('character').get('level') / 10] += 1
+        counter[entry.get('character').get('level') / bin_size] += 1
     return counter
 
 
@@ -110,7 +105,7 @@ def challenge_breakdown(ladder):
     return counter
 
 
-def report(league):
+def report(league, level_bin_size=10):
     ''' Puts together the data from the functions in this file, and prints it
     out to the user with some formatting. Retrieves the ladder for the
     requested league before showing analytics.
@@ -120,6 +115,7 @@ def report(league):
     '''
     # get the ladder
     ladder = pathofexile.utilities.cache_ladder(league)
+    ladder_size = len(ladder)
 
     # print a header
     print
@@ -128,7 +124,7 @@ def report(league):
 
     # number of players with twitch accounts
     n = have_twitch_accounts(ladder)
-    print 'Have Twitch accounts: %d (%.2f%%)' % (n, percentage(n))
+    print 'Have Twitch accounts: %d (%.2f%%)' % (n, percentage(n, ladder_size=ladder_size))
 
     # number of players online
     n = are_online(ladder)
@@ -141,22 +137,28 @@ def report(league):
     # number of dead players
     n = are_dead(ladder)
     if 'HC' in league or 'Hardcore' in league:
-        print 'Dead: %d (%.2f%%)' % (n, percentage(n))
+        print 'Dead: %d (%.2f%%)' % (n, percentage(n, ladder_size=ladder_size))
 
     # level breakdown
     print 'Level breakdown:'
-    levels = level_breakdown(ladder)
-    for level_group in levels:
-        minimum_level = level_group * 10
+    levels = level_breakdown(ladder, level_bin_size)
+    for level_group in sorted(levels.keys()):
+        minimum_level = level_group * level_bin_size
+        max_level = minimum_level + level_bin_size - 1
+        max_level = max_level if max_level <= 100 else 100
         n = levels[level_group]
-        print '    %d+: %d (%.2f%%)' % (minimum_level, n, percentage(n))
+        if max_level == minimum_level:
+            print '    %d: %d (%.2f%%)' % (max_level, n, percentage(n, ladder_size=ladder_size))
+        else:
+            print '    %d-%d: %d (%.2f%%)' % (minimum_level, max_level,
+                                            n, percentage(n, ladder_size=ladder_size))
 
     # class breakdown
     print 'Class breakdown:'
     classes = class_breakdown(ladder)
     for class_name in classes:
         n = classes[class_name]
-        print '    %s: %d (%.2f%%)' % (class_name, n, percentage(n))
+        print '    %s: %d (%.2f%%)' % (class_name, n, percentage(n, ladder_size=ladder_size))
 
     # challenge breakdown
     print 'Challenge completion breakdown:'
@@ -166,5 +168,5 @@ def report(league):
         print '    %d challenges completed: %d (%.2f%%)' % (
             completion_tier,
             n,
-            percentage(n),
+            percentage(n, ladder_size=ladder_size),
         )
