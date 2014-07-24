@@ -102,7 +102,7 @@ Analytics:
         8 challenges completed: 36 (0.24%)
 
 
-Forum Scraping
+Forum Scraping <a name='forum_scraping'></a>
 --------------
 
 Retrieving items from shop threads:
@@ -128,7 +128,7 @@ Retrieving items from shop threads:
             ],
             u'frameType': 3,
             u'h': 3,
-            u'icon': u'http://webcdn.pathofexile.com/image/Art/2DItems/Quivers/BlackgleamAlt.png?scale=1&w=2&h=3&v=b663d1bf51f5acb8518da43063c1a5df3',
+            u'icon': u'http://webcdn.pathofexile.com/image/Art/2DItems/Quivers/BlackgleamAlt.png',
             u'identified': True,
             u'implicitMods': [
                 u'Adds 4-8 Fire Damage to attacks with Bows'
