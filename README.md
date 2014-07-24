@@ -10,7 +10,7 @@ Pull requests are highly encouraged! If you see room for improvement, fork the
 code, commit your patch, and then send a pull request so I can merge it in.
 
 
-How The API Works
+How The API Works <a name='howitworks'></a>
 -----------------
 
 Grinding Gear Games provides an official API for extracting data about leagues,
@@ -24,10 +24,10 @@ programming in a language other than Python, you can use this as a reference
 implementation.
 
 
-Core API
+Core API <a name='api'></a>
 --------
 
-Leagues:
+Leagues: <a name='leagues'></a>
 
 
     >>> import pathofexile.api
@@ -48,7 +48,7 @@ Leagues:
      ...
     ]
 
-Ladders:
+Ladders: <a name='ladders'></a>
 
 
     >>> import pathofexile.utilities
@@ -68,7 +68,7 @@ Ladders:
      ...
     ]
 
-Analytics:
+Analytics: <a name='analytics'></a>
 
 
     >>> import pathofexile.analytics
@@ -102,7 +102,7 @@ Analytics:
         8 challenges completed: 36 (0.24%)
 
 
-Forum Scraping <a name='forum_scraping'></a>
+Forum Scraping <a name='forums'></a>
 --------------
 
 Retrieving items from shop threads:
@@ -158,7 +158,7 @@ Retrieving items from shop threads:
     ]
 
 
-Features
+Features <a name='features'></a>
 --------
 * Full implementation of the PoE API
 * Utilities to make pulling useful data easier
@@ -167,7 +167,7 @@ Features
 * Analytics utilities for printing ladder statistics
 
 
-Installing Dependencies
+Installing Dependencies <a name='dependencies'></a>
 -----------------------
 
 Install virtualenv
