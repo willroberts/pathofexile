@@ -1,6 +1,9 @@
 import grequests
 import os
-import pickle
+try:
+    import cPickle as pickle
+except ImportError:
+    import pickle
 import time
 
 import pathofexile.api
