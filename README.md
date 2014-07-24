@@ -1,8 +1,17 @@
 pathofexile
 ===========
 
-A Python client for the Path of Exile Developer API. Includes some analytics
-tools and pickle-based caching.
+A Python framework for building tools related to Path of Exile.
+
+Includes a complete implementation of the Path of Exile Developer API, tools
+for analytics, and tools for forum scraping.
+
+Pull requests are highly encouraged! If you see room for improvement, fork the
+code, commit your patch, and then send a pull request so I can merge it in.
+
+
+How The API Works
+-----------------
 
 Grinding Gear Games provides an official API for extracting data about leagues,
 rules, and ladders in Path of Exile. You can see the documentation for this API
@@ -13,9 +22,6 @@ available as native Python data structures. This allows you to build tools on
 top of this code which leverage the information from the API. If you're
 programming in a language other than Python, you can use this as a reference
 implementation.
-
-Pull requests are highly encouraged! If you see room for improvement, fork the
-code, commit your patch, and then send a pull request so I can merge it in.
 
 
 Core API
