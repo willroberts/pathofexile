@@ -18,8 +18,8 @@ Pull requests are highly encouraged! If you see room for improvement, fork the
 code, commit your patch, and then send a pull request so I can merge it in.
 
 
-Getting Started / Sample Usage
-------------------------------
+Core API
+--------
 
 Leagues:
 
@@ -94,6 +94,62 @@ Analytics:
         6 challenges completed: 204 (1.36%)
         7 challenges completed: 136 (0.91%)
         8 challenges completed: 36 (0.24%)
+
+
+Forum Scraping
+--------------
+
+Retrieving items from shop threads:
+
+
+    >>> import pathofexile.forum
+    >>> import pprint
+    >>> items = pathofexile.forum.find_items(923014)
+    >>> pprint.pprint(items)
+    
+    [
+        {
+            u'corrupted': False,
+            u'explicitMods': [
+                u'10% increased Attack Speed',
+                u'+20 to Evasion Rating',
+                u'+23 to maximum Mana',
+                u'42% of Physical Damage Converted to Fire Damage'
+            ],
+            u'flavourText': [
+                u'Molten feathers, veiled spark,\r',
+                u'Hissing arrows from the dark.'
+            ],
+            u'frameType': 3,
+            u'h': 3,
+            u'icon': u'http://webcdn.pathofexile.com/image/Art/2DItems/Quivers/BlackgleamAlt.png?scale=1&w=2&h=3&v=b663d1bf51f5acb8518da43063c1a5df3',
+            u'identified': True,
+            u'implicitMods': [
+                u'Adds 4-8 Fire Damage to attacks with Bows'
+            ],
+            u'league': u'Unknown',
+            u'name': u'Blackgleam',
+            u'requirements': [
+                {
+                    u'displayMode': 0,
+                    u'name': u'Level',
+                    u'values': [
+                        [
+                            u'22',
+                            0
+                        ]
+                    ]
+                }
+            ],
+            u'socketedItems': [],
+            u'sockets': [],
+            u'support': True,
+            u'typeLine': u'Fire Arrow Quiver',
+            u'verified': True,
+            u'w': 2
+        },
+        ...
+    ]
 
 
 Features
