@@ -1,6 +1,5 @@
 import jinja2
 import requests
-import sys
 import ujson
 from bs4 import BeautifulSoup
 
