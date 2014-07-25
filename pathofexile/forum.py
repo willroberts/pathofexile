@@ -74,7 +74,7 @@ class PostIsolator(object):
         which are manually specified below).
 
         5 is set manually, because we have 2 <script> fields in the <head>
-        section, and 3 more hardcoded in PostIsolator.create_test_page().
+        section, and 3 more hardcoded in the jinja2 template.
 
         This needs some work, to make sure we're picking up javascript in the
         right way. Counting manually isn't very resilient to upstream changes.
