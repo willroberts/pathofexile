@@ -61,11 +61,10 @@ class PostIsolator(object):
         row, and then isolates the first column in that row. This leaves only
         the first post of a thread, without the sidebar.
         '''
-        post_table = self.soup.find(
-            'table',
-            attrs={'class': 'forumTable forumPostListTable'}
-        )
-        return post_table.find_all('tr')[0].find_all('td')[0]
+        attrs = {'class': 'forumTable forumPostListTable'}
+        post_table = self.soup.find('table', attrs=attrs)
+        first_post = post_table.find('tr').find('td')
+        return first_post
 
     def find_javascript(self):
         ''' Finds all <script type='text/javascript'> tags in the page, and
