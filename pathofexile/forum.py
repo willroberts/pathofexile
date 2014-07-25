@@ -103,13 +103,3 @@ class PostIsolator(object):
             first_post = str(self.first_post),
             javascript = self.javascript,
         )
-
-    def write_test_page(self):
-        ''' Saves the html to /tmp/test.html for debugging purposes
-        '''
-        with open('/tmp/test.html', 'w') as f:
-            f.write(self.new_html)
-
-if __name__ == '__main__':
-    p = PostIsolator(308983)
-    p.write_test_page()
