@@ -18,24 +18,25 @@ def get_html(shop_thread_id):
     return html
 
 
-def get_javascript(html):
-    soup = BeautifulSoup(html)
-    script_tags = soup.find_all('script')
-
-    for javascript in [s.text for s in script_tags]:
-        if 'PoE/Item/DeferredItemRenderer' in javascript:
-            return javascript
-    raise NoItemsFoundException
-
-
-def get_items(javascript):
+def get_items(html):
     ''' Based on manual inspection, these seem to be the strings to the left
     and the right of the JSON list of items at the end of each shop thread in
     the forum. There may be a more reliable way to access this data.
 
-    :param javascript: ...
-    :return: JSON list of items
+    :param html: the html content of a forum shop thread
+    :return: list of item dictionaries
     '''
+    # find relevant javascript
+    soup = BeautifulSoup(html)
+    script_tags = soup.find_all('script')
+    items_code = None
+    for js in [s.text for s in script_tags]:
+        if 'PoE/Item/DeferredItemRenderer' in js:
+            items_code = js
+    if items_code is None:
+        raise NoItemsFoundException
+
+    # parse javascript
     left_bound = 'new R('
     right_bound = ')).run();'
     json_string = javascript.split(left_bound)[1].split(right_bound)[0]
