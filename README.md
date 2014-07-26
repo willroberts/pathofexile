@@ -24,6 +24,15 @@ programming in a language other than Python, you can use this as a reference
 implementation.
 
 
+Features <a name='features'></a>
+--------
+* Full implementation of the PoE API
+* Utilities to make pulling useful data easier
+* Concurrent request mapping to speed up retrieval
+* Pickle-based caching to avoid repeat lookups
+* Analytics utilities for printing ladder statistics
+
+
 Core API <a name='api'></a>
 --------
 
@@ -156,15 +165,6 @@ Retrieving items from shop threads:
         },
         ...
     ]
-
-
-Features <a name='features'></a>
---------
-* Full implementation of the PoE API
-* Utilities to make pulling useful data easier
-* Concurrent request mapping to speed up retrieval
-* Pickle-based caching to avoid repeat lookups
-* Analytics utilities for printing ladder statistics
 
 
 Installing Dependencies <a name='dependencies'></a>
