@@ -61,7 +61,11 @@ class PostIsolator(object):
         # load the template (post.html)
         jinja2_env = jinja2.Environment(
             loader=jinja2.FileSystemLoader(
-                searchpath=['templates', 'pathofexile/templates']
+                searchpath=[
+                    'templates',
+                    'forum/templates',
+                    'pathofexile/forum/templates',
+                ]
             )
         )
         template = jinja2_env.get_template('post.html')
