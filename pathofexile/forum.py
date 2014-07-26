@@ -50,12 +50,12 @@ class PostIsolator(object):
     '''
     def __init__(self, shop_thread_id):
         self.shop_thread_id = shop_thread_id
-        self.html = get_html(self.shop_thread_id)  # original page
-        self.soup = BeautifulSoup(self.html)
+        self.thread_html = get_html(self.shop_thread_id)  # original page
+        self.soup = BeautifulSoup(self.thread_html)
         self.head_tag = self.soup.find('head')
         self.first_post = self.find_first_post()
         self.javascript = self.find_javascript()
-        self.new_html = self.generate_new_html()  # regenerated page
+        self.html = self.generate_html()  # regenerated page
 
     def find_first_post(self):
         ''' Finds the table of class "forumPostListTable", isolates the first
@@ -84,7 +84,7 @@ class PostIsolator(object):
         new_js = js[5:]
         return ''.join([str(j) for j in new_js])
 
-    def generate_new_html(self):
+    def generate_html(self):
         ''' Passes the head tag, first post, and javascript into a jinja2
         template to be rendered into a new, complete HTML page.
         '''
