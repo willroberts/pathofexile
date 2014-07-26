@@ -1,8 +1,17 @@
 pathofexile
 ===========
 
-A Python client for the Path of Exile Developer API. Includes some analytics
-tools and pickle-based caching.
+A Python framework for building tools related to Path of Exile.
+
+Includes a complete implementation of the Path of Exile Developer API, tools
+for analytics, and tools for forum scraping.
+
+Pull requests are highly encouraged! If you see room for improvement, fork the
+code, commit your patch, and then send a pull request so I can merge it in.
+
+
+How The API Works <a name='howitworks'></a>
+-----------------
 
 Grinding Gear Games provides an official API for extracting data about leagues,
 rules, and ladders in Path of Exile. You can see the documentation for this API
@@ -14,14 +23,20 @@ top of this code which leverage the information from the API. If you're
 programming in a language other than Python, you can use this as a reference
 implementation.
 
-Pull requests are highly encouraged! If you see room for improvement, fork the
-code, commit your patch, and then send a pull request so I can merge it in.
+
+Features <a name='features'></a>
+--------
+* Full implementation of the PoE API
+* Utilities to make pulling useful data easier
+* Concurrent request mapping to speed up retrieval
+* Pickle-based caching to avoid repeat lookups
+* Analytics utilities for printing ladder statistics
 
 
-Getting Started / Sample Usage
-------------------------------
+Core API <a name='api'></a>
+--------
 
-Leagues:
+Leagues: <a name='leagues'></a>
 
 
     >>> import pathofexile.api
@@ -42,7 +57,7 @@ Leagues:
      ...
     ]
 
-Ladders:
+Ladders: <a name='ladders'></a>
 
 
     >>> import pathofexile.utilities
@@ -62,7 +77,7 @@ Ladders:
      ...
     ]
 
-Analytics:
+Analytics: <a name='analytics'></a>
 
 
     >>> import pathofexile.analytics
@@ -96,16 +111,63 @@ Analytics:
         8 challenges completed: 36 (0.24%)
 
 
-Features
---------
-* Full implementation of the PoE API
-* Utilities to make pulling useful data easier
-* Concurrent request mapping to speed up retrieval
-* Pickle-based caching to avoid repeat lookups
-* Analytics utilities for printing ladder statistics
+Forum Scraping <a name='forums'></a>
+--------------
+
+Retrieving items from shop threads:
 
 
-Installing Dependencies
+    >>> import pathofexile.forum
+    >>> import pprint
+    >>> items = pathofexile.forum.find_items(923014)
+    >>> pprint.pprint(items)
+    
+    [
+        {
+            u'corrupted': False,
+            u'explicitMods': [
+                u'10% increased Attack Speed',
+                u'+20 to Evasion Rating',
+                u'+23 to maximum Mana',
+                u'42% of Physical Damage Converted to Fire Damage'
+            ],
+            u'flavourText': [
+                u'Molten feathers, veiled spark,\r',
+                u'Hissing arrows from the dark.'
+            ],
+            u'frameType': 3,
+            u'h': 3,
+            u'icon': u'http://webcdn.pathofexile.com/image/Art/2DItems/Quivers/BlackgleamAlt.png',
+            u'identified': True,
+            u'implicitMods': [
+                u'Adds 4-8 Fire Damage to attacks with Bows'
+            ],
+            u'league': u'Unknown',
+            u'name': u'Blackgleam',
+            u'requirements': [
+                {
+                    u'displayMode': 0,
+                    u'name': u'Level',
+                    u'values': [
+                        [
+                            u'22',
+                            0
+                        ]
+                    ]
+                }
+            ],
+            u'socketedItems': [],
+            u'sockets': [],
+            u'support': True,
+            u'typeLine': u'Fire Arrow Quiver',
+            u'verified': True,
+            u'w': 2
+        },
+        ...
+    ]
+
+
+Installing Dependencies <a name='dependencies'></a>
 -----------------------
 
 Install virtualenv

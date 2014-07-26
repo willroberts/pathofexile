@@ -104,7 +104,7 @@ def cache_ladder(league, force_update=False):
     :param force_update: boolean to bypass caching/pickling
     :return: dict object from API JSON response
     '''
-    cache_dir = 'cache'
+    cache_dir = '.ladder_cache'
     pickle_file = '{0}/{1}'.format(cache_dir, league.replace(' ', ''))
     if os.path.isfile(pickle_file) and not force_update:
         current_time = time.time()

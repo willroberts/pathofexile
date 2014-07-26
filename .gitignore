@@ -1,4 +1,4 @@
 *.py[co]
 *.swp
+.ladder_cache
 env
-cache
