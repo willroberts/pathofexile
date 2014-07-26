@@ -2,7 +2,7 @@ import requests
 
 '''
 Path of Exile API Client
-- Minimal implementations of the Path of Exile Developer API
+- Core implementations of the Path of Exile Developer API
 
 Note: Exceptions and error responses are not fully implemented yet
 '''
@@ -122,9 +122,7 @@ def list_league_rules():
     :return: A list of all league rules
     '''
     endpoint = 'http://api.pathofexile.com/league-rules'
-    params = {}
-
-    r = requests.get(endpoint, params=params)
+    r = requests.get(endpoint)
     return r.json()
 
 
@@ -140,9 +138,7 @@ def get_league_rule(league_rule_id):
         raise InvalidLeagueRuleIdError
 
     endpoint = 'http://api.pathofexile.com/league-rules/%d' % league_rule_id
-    params = {}
-
-    r = requests.get(endpoint, params=params)
+    r = requests.get(endpoint)
     return r.json()
 
 
