@@ -26,9 +26,9 @@ implementation.
 
 Features <a name='features'></a>
 --------
-* Full implementation of the PoE API
-* Utilities to make pulling useful data easier
-* Concurrent request mapping to speed up retrieval
+* Full implementation of the Path of Exile API
+* Forum parsing code for shop threads
+* Utilities to make pulling useful data faster and easier
 * Pickle-based caching to avoid repeat lookups
 * Analytics utilities for printing ladder statistics
 
@@ -165,6 +165,37 @@ Retrieving items from shop threads:
         },
         ...
     ]
+
+
+Shop Thread Embeds
+------------------
+
+This part of the codebase allows you to isolate the first post of a shop thread
+while retaining the CSS and Javascript responsible for style and functionality.
+
+It was developed to allow iframe-style embeds on http://www.poearena.com.
+
+The first part of this is the PostIsolator object, which scrapes the HTML of a
+shop thread and parses it out:
+
+
+    >>> import pathofexile.forum.posts
+    >>> p = pathofexile.forum.posts.PostIsolator(976358)
+    >>> p.html
+
+        <complete html for the _first post only_ of shop thread 976358>
+
+I've also included an embed server (embed_server.sh) which runs a Flask app
+behind gunicorn to serve these parsed posts. First you'll need to set up your
+virtualenv. Follow the "Installing Dependencies" section below, but use
+requirements-embedserver.txt instead of requirements.txt. Then you can start
+the server by running "embed_server.sh".
+
+Once it's running, you can use it by hitting this url:
+
+    http://<your server>:8080/shop/<thread number>
+
+You can embed that URL as an iframe from another website, using HTML or BBCode.
 
 
 Installing Dependencies <a name='dependencies'></a>
