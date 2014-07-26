@@ -1,2 +1,2 @@
 #!/bin/bash
-gunicorn -w 4 -b 0.0.0.0:5000 pathofexile.forum.embed_server:app
+gunicorn -w 2 -b 0.0.0.0:8080 pathofexile.forum.embed_server:app
