@@ -240,7 +240,6 @@ Analytics:
 
 Forum Parsing:
 
-* Test PostIsolator code by passing in randomized forum thread IDs
 * Clean up the parsing / generation of CSS / JS assets in PostIsolator
   * Replace background image with #1a1a18
 * Write code to generate new content from item metadata and graphics
