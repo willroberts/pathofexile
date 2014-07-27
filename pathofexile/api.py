@@ -7,6 +7,8 @@ Path of Exile API Client
 Note: Exceptions and error responses are not fully implemented yet
 '''
 
+RATE_LIMIT = 10  # requests per second
+
 
 class InvalidParameterError(Exception):
     pass
@@ -142,7 +144,7 @@ def get_league_rule(league_rule_id):
     return r.json()
 
 
-def get_ladder(ladder_id, ladder_limit=20, ladder_offset=0):
+def get_ladder_segment(ladder_id, ladder_limit=20, ladder_offset=0):
     ''' Get a ladder by league id. There is a restriction in place on the last
     ladder entry you are able to retrieve which is set to 15000.
 

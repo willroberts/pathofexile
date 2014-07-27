@@ -6,10 +6,14 @@ from bs4 import BeautifulSoup
 def get_html(shop_thread_id):
     url = 'http://www.pathofexile.com/forum/view-thread/%s' % shop_thread_id
     html = requests.get(url).content
-    html = html.replace('/favicon.ico',
-        'http://www.pathofexile.com/favicon.ico')
-    html = html.replace('/js/lib/modernizr',
-        'http://www.pathofexile.com/js/lib/modernizr')
+    html = html.replace(
+        '/favicon.ico',
+        'http://www.pathofexile.com/favicon.ico',
+    )
+    html = html.replace(
+        '/js/lib/modernizr',
+        'http://www.pathofexile.com/js/lib/modernizr',
+    )
     return html
 
 
@@ -20,12 +24,26 @@ class PostIsolator(object):
     '''
     def __init__(self, shop_thread_id):
         self.shop_thread_id = shop_thread_id
+        self.jinja2_env = jinja2.Environment(
+            loader=jinja2.FileSystemLoader(
+                searchpath=[
+                    'templates',
+                    'forum/templates',
+                    'pathofexile/forum/templates',
+                ]
+            )
+        )
         self.thread_html = get_html(self.shop_thread_id)  # original page
         self.soup = BeautifulSoup(self.thread_html)
         self.head_tag = self.soup.find('head')
-        self.first_post = self.find_first_post()
-        self.javascript = self.find_javascript()
-        self.html = self.generate_html()  # regenerated page
+        try:
+            self.first_post = self.find_first_post()
+            self.javascript = self.find_javascript()
+            self.html = self.generate_html()  # regenerated page
+        except:
+            self.html = self.jinja2_env.get_template('invalid.html').render(
+                head_tag=str(self.head_tag),
+            )
 
     def find_first_post(self):
         ''' Finds the table of class "forumPostListTable", isolates the first
@@ -34,8 +52,9 @@ class PostIsolator(object):
         '''
         attrs = {'class': 'forumTable forumPostListTable'}
         post_table = self.soup.find('table', attrs=attrs)
-        first_post = post_table.find('tr').find('td')
-        return first_post
+        first_post = post_table.find('tr')
+        first_post_body = first_pod.find('td')
+        return first_post_body
 
     def find_javascript(self):
         ''' Finds all <script type='text/javascript'> tags in the page, and
@@ -58,21 +77,9 @@ class PostIsolator(object):
         ''' Passes the head tag, first post, and javascript into a jinja2
         template to be rendered into a new, complete HTML page.
         '''
-        # load the template (post.html)
-        jinja2_env = jinja2.Environment(
-            loader=jinja2.FileSystemLoader(
-                searchpath=[
-                    'templates',
-                    'forum/templates',
-                    'pathofexile/forum/templates',
-                ]
-            )
-        )
-        template = jinja2_env.get_template('post.html')
-
-        # render the template into valid html
+        template = self.jinja2_env.get_template('post.html')
         return template.render(
-            head_tag = str(self.head_tag),
-            first_post = str(self.first_post),
-            javascript = self.javascript,
+            head_tag=str(self.head_tag),
+            first_post=str(self.first_post),
+            javascript=self.javascript,
         )

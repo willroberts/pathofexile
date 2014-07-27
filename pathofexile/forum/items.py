@@ -10,10 +10,14 @@ class NoItemsFoundException(Exception):
 def get_html(shop_thread_id):
     url = 'http://www.pathofexile.com/forum/view-thread/%s' % shop_thread_id
     html = requests.get(url).content
-    html = html.replace('/favicon.ico',
-        'http://www.pathofexile.com/favicon.ico')
-    html = html.replace('/js/lib/modernizr',
-        'http://www.pathofexile.com/js/lib/modernizr')
+    html = html.replace(
+        '/favicon.ico',
+        'http://www.pathofexile.com/favicon.ico',
+    )
+    html = html.replace(
+        '/js/lib/modernizr',
+        'http://www.pathofexile.com/js/lib/modernizr',
+    )
     return html
 
 
