@@ -9,7 +9,7 @@ logging.basicConfig(filename='embed_server.log', level=logging.DEBUG)
 
 @app.route('/')
 def usage():
-    return 'Usage: Send an HTTP GET to /shop/<thread number>'
+    return 'Usage: Send an HTTP GET to /shop/your_thread_number'
 
 
 @app.route('/shop/<shop_thread_id>')
