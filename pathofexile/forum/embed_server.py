@@ -7,6 +7,11 @@ app = flask.Flask(__name__)
 logging.basicConfig(filename='embed_server.log', level=logging.DEBUG)
 
 
+@app.route('/')
+def usage():
+    return 'Usage: Send an HTTP GET to /shop/<thread number>'
+
+
 @app.route('/shop/<shop_thread_id>')
 def isolate_first_post(shop_thread_id):
     try:
