@@ -1,6 +1,9 @@
 import jinja2
+import logging
 import requests
 from bs4 import BeautifulSoup
+
+logging.basicConfig(filename='embed_server.log', level=logging.DEBUG)
 
 
 def get_html(shop_thread_id):
@@ -40,7 +43,8 @@ class PostIsolator(object):
             self.first_post = self.find_first_post()
             self.javascript = self.find_javascript()
             self.html = self.generate_html()  # regenerated page
-        except:
+        except Exception as e:
+            logging.exception(e.message)
             self.html = self.jinja2_env.get_template('invalid.html').render(
                 head_tag=str(self.head_tag),
             )
@@ -53,7 +57,7 @@ class PostIsolator(object):
         attrs = {'class': 'forumTable forumPostListTable'}
         post_table = self.soup.find('table', attrs=attrs)
         first_post = post_table.find('tr')
-        first_post_body = first_pod.find('td')
+        first_post_body = first_post.find('td')
         return first_post_body
 
     def find_javascript(self):
