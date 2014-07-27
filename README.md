@@ -60,9 +60,9 @@ Leagues: <a name='leagues'></a>
 Ladders: <a name='ladders'></a>
 
 
-    >>> import pathofexile.utilities
+    >>> import pathofexile.ladder
     >>> import pprint
-    >>> ladder = pathofexile.utilities.cache_ladder('Standard')
+    >>> ladder = pathofexile.ladder.retrieve('Standard')
     >>> pprint.pprint(ladder)
 
     [{u'account': {u'challenges': {u'total': 0}, u'name': u'Dawwwis'},
@@ -185,17 +185,23 @@ shop thread and parses it out:
 
         <complete html for the _first post only_ of shop thread 976358>
 
-I've also included an embed server (embed_server.sh) which runs a Flask app
-behind gunicorn to serve these parsed posts. First you'll need to set up your
-virtualenv. Follow the "Installing Dependencies" section below, but use
+I've also included an application server which filters out posts when a request
+is sent to `/shop/<thread_number>`, and returns the isolated HTML. It uses the
+Flask application server and the gunicorn HTTP server.
+
+To get started, you'll need to set up your virtualenv. Follow the
+<a href="#dependencies">Installing Dependencies</a> section below, but use
 requirements-embedserver.txt instead of requirements.txt. Then you can start
-the server by running "embed_server.sh".
+the server:
 
-Once it's running, you can use it by hitting this url:
+    $ bash embed_server.sh
 
-    http://<your server>:8080/shop/<thread number>
+Once it's running, you can test it by hitting this url:
 
-You can embed that URL as an iframe from another website, using HTML or BBCode.
+    $ curl http://<your server>:8080/shop/<thread_number>
+
+You can then embed that URL as an iframe from another website, using HTML or
+BBCode.
 
 
 Installing Dependencies <a name='dependencies'></a>
@@ -217,3 +223,30 @@ Install the Python library dependencies:
 
     pip install -r requirements.txt
 
+
+To Do <a name='todo'></a>
+-----
+Core API:
+
+* Utilize the documented return codes and error codes in the core API
+  * Use the Codes.returns[429] error message when the rate limit is exceeded
+
+Analytics:
+
+* Add analytics for the number of ladder characters per account
+  * 1 account has 5 ladder characters, 10 accounts have 4, etc.
+* Write some graph generation code for analytics
+  * See http://i.imgur.com/lp0ZPCH.jpg
+
+Forum Parsing:
+
+* Clean up the parsing / generation of CSS / JS assets in PostIsolator
+  * Replace background image with #1a1a18
+* Write code to generate new content from item metadata and graphics
+  * Write CSS / JS to emulate pathofexile.com style (fonts, colors, etc.)
+  * Parse item metadata into familiar formats
+  * See http://i.imgur.com/fOX0MFR.png
+
+PVP:
+
+* Write code to generate and manage tournament brackets

@@ -1,7 +1,7 @@
 import collections
 import time
 
-import pathofexile.utilities
+import pathofexile.ladder
 
 '''
 Path of Exile API Client
@@ -114,7 +114,7 @@ def report(league, level_bin_size=10):
     :return: None (just prints)
     '''
     # get the ladder
-    ladder = pathofexile.utilities.cache_ladder(league)
+    ladder = pathofexile.ladder.retrieve(league)
     ladder_size = len(ladder)
 
     # print a header
@@ -124,7 +124,10 @@ def report(league, level_bin_size=10):
 
     # number of players with twitch accounts
     n = have_twitch_accounts(ladder)
-    print 'Have Twitch accounts: %d (%.2f%%)' % (n, percentage(n, ladder_size=ladder_size))
+    print 'Have Twitch accounts: %d (%.2f%%)' % (
+        n,
+        percentage(n, ladder_size=ladder_size),
+    )
 
     # number of players online
     n = are_online(ladder)
@@ -137,7 +140,10 @@ def report(league, level_bin_size=10):
     # number of dead players
     n = are_dead(ladder)
     if 'HC' in league or 'Hardcore' in league:
-        print 'Dead: %d (%.2f%%)' % (n, percentage(n, ladder_size=ladder_size))
+        print 'Dead: %d (%.2f%%)' % (
+            n,
+            percentage(n, ladder_size=ladder_size),
+        )
 
     # level breakdown
     print 'Level breakdown:'
@@ -148,17 +154,29 @@ def report(league, level_bin_size=10):
         max_level = max_level if max_level <= 100 else 100
         n = levels[level_group]
         if max_level == minimum_level:
-            print '    %d: %d (%.2f%%)' % (max_level, n, percentage(n, ladder_size=ladder_size))
+            print '    %d: %d (%.2f%%)' % (
+                max_level,
+                n,
+                percentage(n, ladder_size=ladder_size),
+            )
         else:
-            print '    %d-%d: %d (%.2f%%)' % (minimum_level, max_level,
-                                            n, percentage(n, ladder_size=ladder_size))
+            print '    %d-%d: %d (%.2f%%)' % (
+                minimum_level,
+                max_level,
+                n,
+                percentage(n, ladder_size=ladder_size),
+            )
 
     # class breakdown
     print 'Class breakdown:'
     classes = class_breakdown(ladder)
     for class_name in classes:
         n = classes[class_name]
-        print '    %s: %d (%.2f%%)' % (class_name, n, percentage(n, ladder_size=ladder_size))
+        print '    %s: %d (%.2f%%)' % (
+            class_name,
+            n,
+            percentage(n, ladder_size=ladder_size),
+        )
 
     # challenge breakdown
     print 'Challenge completion breakdown:'
