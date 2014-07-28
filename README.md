@@ -190,15 +190,14 @@ is sent to `/shop/<thread_number>`, and returns the isolated HTML. It uses the
 Flask application server and the gunicorn HTTP server.
 
 To get started, you'll need to set up your virtualenv. Follow the
-<a href="#dependencies">Installing Dependencies</a> section below, but use
-requirements-embedserver.txt instead of requirements.txt. Then you can start
+<a href="#dependencies">Installing Dependencies</a> section below. Then you can start
 the server:
 
-    $ bash embed_server.sh
+    $ bash post_server.sh
 
 Once it's running, you can test it by hitting this url:
 
-    $ curl http://<your server>:8080/shop/<thread_number>
+    http://<your server>:8080/shop/<thread_number>
 
 You can then embed that URL as an iframe from another website, using HTML or
 BBCode.

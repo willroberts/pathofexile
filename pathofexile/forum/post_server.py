@@ -4,7 +4,7 @@ import logging
 import posts
 
 app = flask.Flask(__name__)
-logging.basicConfig(filename='embed_server.log', level=logging.DEBUG)
+logging.basicConfig(filename='post_server.log', level=logging.DEBUG)
 
 
 @app.route('/')

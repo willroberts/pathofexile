@@ -3,9 +3,21 @@ import logging
 import requests
 from bs4 import BeautifulSoup
 
-from items import get_html
+logging.basicConfig(filename='post_server.log', level=logging.DEBUG)
 
-logging.basicConfig(filename='embed_server.log', level=logging.DEBUG)
+
+def get_html(shop_thread_id):
+    url = 'http://www.pathofexile.com/forum/view-thread/%s' % shop_thread_id
+    html = requests.get(url).content
+    html = html.replace(
+        '/favicon.ico',
+        'http://www.pathofexile.com/favicon.ico',
+    )
+    html = html.replace(
+        '/js/lib/modernizr',
+        'http://www.pathofexile.com/js/lib/modernizr',
+    )
+    return html
 
 
 class PostIsolator(object):
