@@ -180,10 +180,10 @@ shop thread and parses it out:
 
 
     >>> import pathofexile.forum.posts
-    >>> p = pathofexile.forum.posts.PostIsolator(976358)
+    >>> p = pathofexile.forum.posts.PostIsolator(516116)
     >>> p.html
 
-        <complete html for the _first post only_ of shop thread 976358>
+        <complete html for the _first post only_ of shop thread 516116>
 
 I've also included an application server which filters out posts when a request
 is sent to `/shop/<thread_number>`, and returns the isolated HTML. It uses the
