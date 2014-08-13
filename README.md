@@ -225,25 +225,27 @@ Install the Python library dependencies:
 
 To Do <a name='todo'></a>
 -----
+
+Documentation:
+
+* Add general documentation for the included tools and their usage
+* Add/expand in-code documentation (docstrings)
+
 Core API:
 
-* Utilize the documented return codes and error codes in the core API
+* Use the documented return codes and error codes in the core API
   * Use the Codes.returns[429] error message when the rate limit is exceeded
 
 Analytics:
 
 * Add analytics for the number of ladder characters per account
   * 1 account has 5 ladder characters, 10 accounts have 4, etc.
-* Write some graph generation code for analytics
+* Write graph generation code for analytics
   * See http://i.imgur.com/lp0ZPCH.jpg
 
 Forum Parsing:
 
-* Clean up the parsing / generation of CSS / JS assets in PostIsolator
-  * Replace background image with #1a1a18
-* Write code to generate new content from item metadata and graphics
-  * Write CSS / JS to emulate pathofexile.com style (fonts, colors, etc.)
-  * Parse item metadata into familiar formats
+* Continue to improve HTML/CSS/JS assets to improve visual style
   * See http://i.imgur.com/fOX0MFR.png
 
 PVP:
