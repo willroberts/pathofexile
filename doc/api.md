@@ -20,7 +20,7 @@ converting it into native Python data structures (dictionaries and lists).
 Leagues
 -------
 
-Use the `get_leagues()` function to see all available leagues:
+Use `api.get_leagues()` to see all available leagues:
 
     >>> import pathofexile.api
     >>> leagues = pathofexile.api.get_leagues()
@@ -68,7 +68,7 @@ Leagues are accessed by their ID, which is a string:
 League Rules
 ------------
 
-Use the `get_league_rules()` function to see all available league rules:
+Use `api.get_league_rules()` to see all available league rules:
 
     >>> import pathofexile.api
     >>> league_rules = pathofexile.api.get_league_rules()
@@ -101,8 +101,8 @@ Ladders
 The core API implementation offers two ways to retrieve the ladder for a given
 league:
 
-    1. Request a segment of the ladder on top of each `get_league()` request
-    2. Request a ladder segment directly from the Ladder API endpoint
+1. Request a segment of the ladder on top of each `get_league()` request
+2. Request a ladder segment directly from the Ladder API endpoint
 
 The first method is documented in the code, but is not recommended. The second
 method works as follows:
