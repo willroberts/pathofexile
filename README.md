@@ -22,7 +22,7 @@ Features <a name='features'></a>
 Documentation
 -------------
 
-1. <a href='doc/api.md'>Core API</a>
+1. <a href='docs/api.md'>Core API</a>
 
 
 Installing Dependencies
