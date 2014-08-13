@@ -34,12 +34,12 @@ while retaining the CSS and Javascript responsible for style and functionality.
 
 It was developed to allow iframe-style embeds on http://www.poearena.com.
 
-The first part of this is the PostIsolator object, which scrapes the HTML of a
-shop thread and parses it out:
+This functionality is handled by the PostIsolator class, which scrapes the HTML
+of a shop thread and parses it out:
 
 
     >>> import pathofexile.forum.posts
     >>> p = pathofexile.forum.posts.PostIsolator(516116)
     >>> p.html
 
-        <complete html for the _first post only_ of shop thread 516116>
+        < complete html for the first post only of shop thread 516116 >
