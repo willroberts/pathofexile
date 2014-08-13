@@ -118,7 +118,7 @@ def get_league(league_id, ladder=0, ladder_limit=20, ladder_offset=0):
     return r.json()
 
 
-def list_league_rules():
+def get_league_rules():
     ''' Get a list of all possible league rules.
 
     :return: A list of all league rules

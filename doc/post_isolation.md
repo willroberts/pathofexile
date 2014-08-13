@@ -41,7 +41,7 @@ Leagues: <a name='leagues'></a>
 
     >>> import pathofexile.api
     >>> import pprint
-    >>> leagues = pathofexile.api.list_leagues()
+    >>> leagues = pathofexile.api.get_leagues()
     >>> pprint.pprint(leagues)
 
     [{u'description': u'The default game mode.',
