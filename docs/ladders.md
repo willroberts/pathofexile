@@ -2,7 +2,7 @@ Ladders
 =======
 
 Relevant files:
-* pathofexile/ladders/__init__.py
+* `pathofexile/ladders/__init__.py`
 
 
 Summary
@@ -19,7 +19,7 @@ The API seems to accept around 10 requests per second before triggering rate
 limits, so we call `sleep()` between each batch of requests to avoid being
 rate limited.
 
-Note: It takes around 20 seconds to retrieve a ladder in this way.
+It takes around 20 seconds to retrieve a ladder in this way.
 
 
 Retrieving A Ladder

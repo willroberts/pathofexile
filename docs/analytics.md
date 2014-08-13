@@ -3,14 +3,14 @@ Analytics
 
 Relevant files:
 
-* pathofexile/ladder/analytics.py
+* `pathofexile/ladder/analytics.py`
 
 
 Summary
 -------
 
-Leverages the code from the <a href="ladders.md">Ladders</a> to generate
-statistics about the players in the given league.
+Leverages the code from the <a href="ladders.md">Ladders</a> section to
+generate statistics about the players in the given league.
 
 
 Printing League Statistics

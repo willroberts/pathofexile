@@ -2,11 +2,11 @@ Items
 =====
 
 Relevant files:
-* pathofexile/forum/items.py
-* pathofexile/forum/item_server.py
-* pathofexile/forum/templates/items.html
-* pathofexile/forum/assets/css/item_server.css
-* item_server.sh
+* `pathofexile/forum/items.py`
+* `pathofexile/forum/item_server.py`
+* `pathofexile/forum/templates/items.html`
+* `pathofexile/forum/assets/css/item_server.css`
+* `item_server.sh`
 
 
 Summary

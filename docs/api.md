@@ -3,7 +3,7 @@ Core API Documentation
 
 Relevant files:
 
-* pathofexile/api.py
+* `pathofexile/api.py`
 
 Summary
 -------
