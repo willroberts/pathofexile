@@ -1,0 +1,88 @@
+<html>
+ <head>
+  <title>Shop Thread {{ shop_thread_id }}</title>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+ <head>
+ <body>
+  <div id="wrapper">
+   <table>
+    {% for item in items %}
+    <tr>
+     <td class="left-column">
+      <p class="{{ item.item_type }}">{{ item.name }}</p>
+      <p>{{ item.item_base }}</p>
+      {% if item.corrupted == True %}
+      <p class="red">Corrupted</p>
+      {% endif %}
+      {% if item.verified == True %}
+      <p class="green">Verified</p>
+      {% else %}
+      <p class="red">Sold</p>
+      {% endif %}
+      <br />
+      <img src="{{ item.image_url }}" height="{{ item.render_height }}" width="{{ item.render_width }}" />
+     </td>
+     <td class="right-column">
+
+      <!-- PROPERTIES -->
+      {% for property in item.properties %}
+      <p><span class="bold">{{ property }}</span>: {{ item.properties.get(property) }}</p>
+      {% endfor %}
+
+      <!-- REQUIREMENTS -->
+      {% for requirement in item.requirements %}
+      <p><span class="bold">Required {{ requirement }}</span>: {{ item.requirements.get(requirement) }}</P>
+      {% endfor %}
+
+      <!-- SOCKETS -->
+      {% if item.sockets %}
+      <p>
+       <span class="bold">Sockets</span>:
+       {% for s in item.sockets %}
+       {% if s == 'R' %}
+       <span class="red">{{ s }}</span>
+       {% elif s == 'G' %}
+       <span class="green">{{ s }}</span>
+       {% elif s == 'B' %}
+       <span class="blue">{{ s }}</span>
+       {% elif s == 'W' %}
+       <span class="white">{{ s }}</span>
+       {% elif s == ' ' %}
+       <span class="socket-separator"></span>
+       {% else %}
+       <span>{{ s }}</span>
+       {% endif %}
+       {% endfor %}
+      </p>
+      {% endif %}
+
+      <hr />
+
+      <!-- EXPLICIT MODS -->
+      {% for mod in item.explicit_mods %}
+      <p>
+       {% if 'Fire Resistance' in mod or 'Fire Damage' in mod %}
+       <span class="fire">
+       {% elif 'Cold Resistance' in mod or 'Cold Damage' in mod %}
+       <span class="cold">
+       {% elif 'Lightning Resistance' in mod or 'Lightning Damage' in mod %}
+       <span class="lightning">
+       {% elif 'Chaos Resistance' in mod or 'Chaos Damage' in mod %}
+       <span class="chaos">
+       {% elif 'maximum Life' in mod or 'Life gained' in mod or 'Life Regen' in mod %}
+       <span class="life">
+       {% else %}
+       <span>
+       {% endif %}
+       {{ mod }}
+       </span>
+      </p>
+      {% endfor %}
+
+     </td>
+    </tr>
+    {% endfor %}
+   </table>
+  </div>
+ </body>
+</html>

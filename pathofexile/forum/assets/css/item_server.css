@@ -1,0 +1,65 @@
+body {
+    /* background-color: #1a1b18; /* pathofexile.com */
+    background-color: #12110f; /* poearena.com */
+    color: #9e8d6d;
+}
+
+#wrapper {
+    width: 640px;
+    margin: 0 auto;
+}
+
+table, td {
+    border: 2px solid #9e8d6d;
+    border-collapse: collapse;
+}
+
+td { padding: 20px; }
+td.left-column { width: 180px; }
+td.right-column { width: 460px; }
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+hr {
+    background: #9e8d6d;
+    border: 0;
+    height: 2px;
+    width: 50%;
+    margin: 20px auto;
+}
+
+p {
+    font: 13px verdana;
+    text-align: center;
+    margin: 6px auto;
+}
+
+.normal, .magic, .rare, .unique, .gem {
+    font: 15px verdana;
+    font-weight: bold;
+}
+
+.bold { font-weight: bold; }
+.socket-separator { margin: auto 6px; }
+
+.blue { color: #0099ff; }
+.chaos, .purple { color: #9e3fb3; }
+.cold { color: #3f6db3; }
+.currency, .gold { color: #948971; }
+.fire { color: #b97123; }
+.gem { color: #1ba28e; }
+.green { color: #00cc00; }
+.life { color: #d14e4e; }
+.magic { color: #7e7eee; }
+.normal, .white { color: #ffffff; }
+.red { color: #cc0000; }
+.unique, .orange { color: #af4f13; }
+
+.rare, .lightning, .yellow {
+    /* color: #ffff77; /* exact rare color */
+    color: #eeee66; /* brightness turned down a bit */
+}
