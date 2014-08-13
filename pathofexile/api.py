@@ -65,7 +65,7 @@ class Codes(object):
     }
 
 
-def list_leagues(league_type='all'):
+def get_leagues(league_type='all'):
     ''' Get a list of current leagues. Returns no more than 50 entries.
 
     :param league_type: Possible values, "all" to retrieve all leagues (the
