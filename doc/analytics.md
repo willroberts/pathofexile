@@ -1,6 +1,20 @@
 Analytics
 =========
 
+Relevant files:
+
+* pathofexile/ladder/analytics.py
+
+
+Summary
+-------
+
+Leverages the code from the <a href="ladders.md">Ladders</a> to generate
+statistics about the players in the given league.
+
+
+Printing League Statistics
+--------------------------
 
     >>> import pathofexile.analytics
     >>> pathofexile.analytics.report('Standard')

@@ -130,7 +130,7 @@ method works as follows:
                 u'online': False,
                 u'rank': 1
             },
-            ...  # contains 20 entries (set by ladder_limit)
+            ...  # returns 20 entries (set by ladder_limit)
         u'total': 15000
     }
 
