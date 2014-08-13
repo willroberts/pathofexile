@@ -20,10 +20,10 @@ returns them as a list of Item() objects. Item() is a custom class which
 contains logic for parsing items, grouping sockets, resizing images, and more.
 
 `item_server.py` is a small HTTP server which listens for requests to
-`http://<server address>/shop/<shop thread number>`, and then returns rendered
-HTML content of the items in the requested thread. This HTML is constructed
-and styled by `items.html` and `item_server.css`. To start the server in the
-background, run `item_server.sh` when the virtualenv is active.
+`http://<server address>:8080/shop/<shop thread number>`, and then returns
+rendered HTML content of the items in the requested thread. This HTML is
+constructed and styled by `items.html` and `item_server.css`. To start the
+server in the background, run `item_server.sh` when the virtualenv is active.
 
 
 The Item() Class
