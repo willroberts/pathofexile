@@ -83,7 +83,7 @@ Use `api.get_league_rules()` to see all available league rules:
         ...  # returns all possible league rules (10 as of August 2014)
     ]
 
-League rules are accessed by their ID, which is an integer:
+League rules are accessed by their ID, which is a number:
 
     >>> turbo_rule = pathofexile.api.get_league_rule(26)
     >>> print(turbo_rule)

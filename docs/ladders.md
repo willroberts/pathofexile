@@ -19,7 +19,8 @@ The API seems to accept around 10 requests per second before triggering rate
 limits, so we call `sleep()` between each batch of requests to avoid being
 rate limited.
 
-It takes around 20 seconds to retrieve a ladder in this way.
+It takes around 20 seconds to retrieve a ladder in this way, depending on the
+latency of responses from api.pathofexile.com.
 
 
 Retrieving A Ladder
