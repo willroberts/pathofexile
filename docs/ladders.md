@@ -31,9 +31,8 @@ Retrieving A Ladder
 -------------------
 
     >>> import pathofexile.ladder
-    >>> import pprint
     >>> ladder = pathofexile.ladder.retrieve('Standard')
-    >>> pprint.pprint(ladder)
+    >>> print(ladder)
 
     [
         {

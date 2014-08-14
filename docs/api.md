@@ -131,6 +131,7 @@ method works as follows:
                 u'rank': 1
             },
             ...  # returns 20 entries (set by ladder_limit)
+        ],
         u'total': 15000
     }
 
