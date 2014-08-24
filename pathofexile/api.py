@@ -65,7 +65,7 @@ class Codes(object):
     }
 
 
-def list_leagues(league_type='all'):
+def get_leagues(league_type='all'):
     ''' Get a list of current leagues. Returns no more than 50 entries.
 
     :param league_type: Possible values, "all" to retrieve all leagues (the
@@ -118,7 +118,7 @@ def get_league(league_id, ladder=0, ladder_limit=20, ladder_offset=0):
     return r.json()
 
 
-def list_league_rules():
+def get_league_rules():
     ''' Get a list of all possible league rules.
 
     :return: A list of all league rules
