@@ -1,23 +1,18 @@
 Setup
 =====
 
-
-
-virtualenv and dependencies
----------------------------
-
-Install virtualenv
+1. Install the Python package 'virtualenv':
 
     sudo pip install virtualenv
 
-Create a virtualenv
+2. Create a virtual environment for Python libraries:
 
     virtualenv env
 
-Activate it
+3. Activate the virtual environment:
 
     source env/bin/activate
 
-Install the Python library dependencies:
+4. Install the Python library dependencies of this repo:
 
     pip install -r requirements.txt
