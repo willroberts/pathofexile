@@ -38,4 +38,4 @@ Pull requests are highly encouraged! If you see room for improvement, fork the
 code, commit your patch, and then send a pull request so I can merge it in.
 
 To get started, check out `to_do.md` in this directory, and see the
-documentation in `docs/`.
+<a href="#documentation">documentation</a>.
