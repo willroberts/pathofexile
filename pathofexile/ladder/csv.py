@@ -26,10 +26,3 @@ def download_ladder_csv(league):
         os.mkdir(cache_dir)
     with open(csv_file, 'w') as f:
         f.write(r.content)
-
-
-def main():
-    download_ladder_csv('Standard')
-
-if __name__ == '__main__':
-    main()
