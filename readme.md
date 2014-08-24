@@ -6,9 +6,6 @@ A Python framework for building tools related to Path of Exile.
 Includes a complete implementation of the Path of Exile Developer API, tools
 for analytics, and tools for forum scraping.
 
-Pull requests are highly encouraged! If you see room for improvement, fork the
-code, commit your patch, and then send a pull request so I can merge it in.
-
 
 Features <a name='features'></a>
 --------
@@ -32,3 +29,13 @@ Documentation
 4. <a href='docs/analytics.md'>Analytics</a>
 5. <a href='docs/items.md'>Items</a>
 6. <a href='docs/posts.md'>Forum Posts</a>
+
+
+Contributing
+------------
+
+Pull requests are highly encouraged! If you see room for improvement, fork the
+code, commit your patch, and then send a pull request so I can merge it in.
+
+To get started, check out `to_do.md` in this directory, and see the
+documentation in `docs/`.
