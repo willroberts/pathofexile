@@ -20,7 +20,7 @@ Features <a name='features'></a>
 * Forum post isolator which embeds the first post of a shop thread
 
 
-Documentation
+Documentation<a name="documentation"></a>
 -------------
 
 1. <a href='docs/setup.md'>Setup</a>

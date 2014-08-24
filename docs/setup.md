@@ -16,3 +16,7 @@ Activate the virtual environment:
 Install the Python library dependencies of this repo:
 
     pip install -r requirements.txt
+
+Now you can run any of the code in this repository. Check out the other pages
+in the <a href="../readme.md#documentation">documentation</a> for information
+on running the code.
