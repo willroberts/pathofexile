@@ -105,6 +105,28 @@ def challenge_breakdown(ladder):
     return counter
 
 
+def characters_per_account(ladder):
+    """ Returns a Counter whose keys are account names which map to the
+    number of characters that account has on the ladder.
+
+    :param ladder: dict object from Ladder API (json response)
+    :return: Counter of 'account names': '# of characters on ladder' mappings
+    """
+    return collections.Counter(
+        [entry.get('account').get('name') for entry in ladder]
+    )
+
+
+def characters_per_account_breakdown(ladder):
+    """ Returns a Counter whose keys are the # of characters which map
+    to the total # of accounts that have that many characters on ladder.
+
+    :param ladder: dict object from Ladder API (json response)
+    :return: Counter of '# of characters': 'total # of accounts' mappings
+    """
+    return collections.Counter(characters_per_account(ladder).values())
+
+
 def report(league, level_bin_size=10):
     ''' Puts together the data from the functions in this file, and prints it
     out to the user with some formatting. Retrieves the ladder for the
@@ -188,3 +210,20 @@ def report(league, level_bin_size=10):
             n,
             percentage(n, ladder_size=ladder_size),
         )
+
+    # characters per account breakdown
+    print 'Characters per account breakdown:'
+    cpa_breakdown = characters_per_account_breakdown(ladder)
+    num_accounts = sum(cpa_breakdown.values())
+    for (k, v) in reversed(cpa_breakdown.items()):
+        text = 'account has' if v == 1 else 'accounts have'
+        print("    {:d} {:s} {:d} ladder characters ({:.2f}%)".
+              format(v, text, k, percentage(v, ladder_size=num_accounts))
+        )
+
+    # top accounts
+    print 'Top 5 accounts with most ladder characters:'
+    iterator = enumerate(characters_per_account(ladder).most_common(5), 1)
+    for i, (account, num_char) in iterator:
+        print("    {:d}). {:s} ({:d})".format(i, account, num_char))
+
