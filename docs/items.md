@@ -29,4 +29,41 @@ server in the background, run `item_server.sh` when the virtualenv is active.
 The Item() Class
 ----------------
 
-    >>> 
+Retrieve the items from a shop thread
+
+    >>> import pathofexile.forum.items
+    >>> items = pathofexile.forum.items.get_items(516116)
+    >>> print len(items)
+
+        173
+
+Here's a sample item, and the attributes you can expect from the Item() class:
+
+    >>> sample_item = items[100]
+    >>> print sample_item
+    <pathofexile.forum.items.Item object at 0x7feabb1c5e50>
+    >>> print sample_item.__dict__
+
+        {
+            'corrupted': False,
+            'explicit_mods': [
+                u'144% increased Physical Damage',
+                u'20% increased Attack Speed',
+                u'+164 to Accuracy Rating',
+                u'10% increased Movement Speed'
+            ],
+            'image_url': u'http://webcdn.pathofexile.com/image/Art/2DItems/Weapons/TwoHandWeapons/TwoHandSwords/TwoHandSword5Unique.png?scale=1&w=2&h=4&v=fb4f93392d82b1f9d21f9fa6236ac54f3',
+            'item_base': u'Highland Blade',
+            'item_type': 'Unique',
+            'name': u"Rigvald's Charge",
+            'properties': {
+                u'Attacks per Second': u'1.44',
+                u'Critical Strike Chance': u'5%',
+                u'Physical Damage': u'122-224'
+            },
+            'render_height': 192,
+            'render_width': 96,
+            'requirements': {u'Dex': u'77', u'Level': u'44', u'Str': u'77'},
+            'sockets': 'R-G G',
+            'verified': True
+        }
