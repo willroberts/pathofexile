@@ -95,7 +95,7 @@ def retrieve_sequentially(ladder_id, force_redownload=False):
         entries.extend(p.get('entries'))
         offset += limit
 
-    return enries
+    return entries
 
 
 @cache
