@@ -25,7 +25,7 @@ def have_twitch_accounts(ladder):
     the given ladder.
 
     :param ladder: dict object from Ladder API (json response)
-    :return: tuple of count (int) and percentage (float)
+    :return: count (int)
     '''
     count = 0
     for entry in ladder:
@@ -39,7 +39,7 @@ def are_dead(ladder):
     ladder. Will always return 0 for non-hardcore leagues.
 
     :param ladder: dict object from Ladder API (json response)
-    :return: tuple of count (int) and percentage (float)
+    :return: count (int)
     '''
     count = 0
     for entry in ladder:
@@ -53,7 +53,7 @@ def are_online(ladder):
     ladder.
 
     :param ladder: dict object from Ladder API (json response)
-    :return: tuple of count (int) and percentage (float)
+    :return: count (int)
     '''
     count = 0
     for entry in ladder:
@@ -126,6 +126,13 @@ def characters_per_account_breakdown(ladder):
     """
     return collections.Counter(characters_per_account(ladder).values())
 
+def distinct_accounts(ladder):
+    """ Returns the count of distinct accounts that are on the ladder.
+
+    :param ladder: dict object from Ladder API (json response)
+    :return: count (int)
+    """
+    return sum(characters_per_account_breakdown(ladder).values())
 
 def report(league, level_bin_size=10):
     ''' Puts together the data from the functions in this file, and prints it

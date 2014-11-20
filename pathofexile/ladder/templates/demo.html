@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Graphs Demo - {{league_id}}</title>
+</head>
+<body>
+    <p>This is a demo for the analytics graphs.</p>
+    <div id="levelChart"></div>
+    <div id="twitchChart"></div>
+    <div id="classesChart"></div>
+    <div id="cpaChart"></div>
+    <div id="challengeChart"></div>
+    <div id="onlineChart"></div>
+    <div id="deathChart"></div>
+
+    <!--Include the google charts api, jQuery, and the analytics-graphs script-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='analytics-graphs.js') }} "></script>
+    <script>
+        google.load('visualization', '1.0', {'packages':['corechart']});
+        google.setOnLoadCallback(draw);
+
+        function draw() {
+            var leagueId = '{{league_id}}';
+
+            // In your callback function, call one or more functions from
+            // the analytics-graphs script, passing the leagueId (e.g. 'Rampage')
+            // and element id where you want the chart to appear.
+
+            drawLevelBreakdown(leagueId, 'levelChart');
+            drawTwitchAccounts(leagueId, 'twitchChart');
+            drawClasses(leagueId, 'classesChart');
+            drawCharactersPerAccount(leagueId, 'cpaChart');
+            drawChallenges(leagueId, 'challengeChart');
+            drawAreOnline(leagueId, 'onlineChart');
+            drawAreDead(leagueId, 'deathChart');
+        }
+    </script>
+</body>
+</html>
