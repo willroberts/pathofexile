@@ -46,7 +46,10 @@ def cache(original_function):
     def load_if_present(ladder_id, force_redownload=False):
         one_hour = 3600  # seconds
         cache_dir = '.ladder_cache'
-        pickle_file = '{0}/{1}'.format(cache_dir, ladder_id.replace(' ', ''))
+        pickle_file = '{0}/{1}'.format(
+            cache_dir,
+            ladder_id.replace(' ', '').replace('/', '_')
+        )
 
         # determine if loading from cache is an option
         if os.path.isfile(pickle_file) and not force_redownload:
