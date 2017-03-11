@@ -17,10 +17,20 @@ class InvalidParameterError(Exception):
 class InvalidLeagueTypeError(InvalidParameterError):
     pass
 
+class InvalidSeasonError(InvalidParameterError):
+    pass
+
+class InvalidCompactInfoError(InvalidParameterError):
+    pass
+
+class InvalidLeagueLimitError(InvalidParameterError):
+    pass
+
+class InvalidLeagueOffsetError(InvalidParameterError):
+    pass
 
 class InvalidLeagueIdError(InvalidParameterError):
     pass
-
 
 class InvalidLadderInclusionError(InvalidParameterError):
     pass
@@ -32,7 +42,6 @@ class InvalidLadderLimitError(InvalidParameterError):
 
 class InvalidLadderOffsetError(InvalidParameterError):
     pass
-
 
 class InvalidLeagueRuleIdError(InvalidParameterError):
     pass
@@ -65,18 +74,51 @@ class Codes(object):
     }
 
 
-def get_leagues(league_type='all'):
+def get_leagues(league_type='all',
+                season=None,
+                compact_info=0,
+                league_limit=None,
+                league_offset=0
+                ):
     ''' Get a list of current leagues. Returns no more than 50 entries.
 
     :param league_type: Possible values, "all" to retrieve all leagues (the
-        default), or "event" to retrieve event leagues.
+        default), "main" to retrieve the main leagues, "season" to retrieve
+        leagues in a particular season, or "event" to retrieve event leagues.
+    :param season: When league_type="season", specifies the season id to
+        retrieve.
+    :param compact_info: Possible values, 0 retrieve full info for the leagues,
+        or 1 to retrieve compact info for the leagues.
+    :param league_limit: Specifies the number of league entries to include.
+        Defaults to None, which returns the maximum number of leagues given the
+        compact_info setting.
+    :param league_offset: Specifies the offset to the first league entry
+        to include. Default: 0.
     :return: A list of all league details
     '''
-    if league_type not in ['all', 'event']:
+    if league_type not in ['all', 'main', 'season', 'event']:
         raise InvalidLeagueTypeError
+    if league_type == 'season' and not isinstance(season, basestring):
+        raise InvalidSeasonError 
+    if compact_info not in [0,1]:
+        raise InvalidCompactInfoError
+    if not (
+            league_limit is None
+            or (league_limit >= 0 and league_limit <= 230)
+           ):
+        raise InvalidLeagueLimitError
+    if not league_offset >= 0:
+        raise InvalidLeagueOffsetError
 
     endpoint = 'http://api.pathofexile.com/leagues'
-    params = {'type': league_type}
+    params = {'type': league_type,
+              'compact': compact_info,
+              'offset': league_offset
+             }
+    if season is not None:
+        params['season'] = season
+    if league_limit is not None:
+        params['limit'] = league_limit
 
     r = requests.get(endpoint, params=params)
     return r.json()
