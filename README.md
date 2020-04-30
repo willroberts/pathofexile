@@ -1,3 +1,9 @@
+# [DEPRECATED]
+
+This library has been deprecated, as it no longer supports the current PoE API.
+
+Please use [poeapi](https://github.com/willroberts/poeapi) instead.
+
 # pathofexile
 
 A Python framework for building tools related to Path of Exile.
