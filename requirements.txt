@@ -5,7 +5,7 @@ greenlet==0.4.2
 grequests==0.2.0
 gunicorn==19.9.0
 itsdangerous==0.24
-Jinja2==2.7.3
+Jinja2==2.11.3
 MarkupSafe==0.23
 requests==2.3.0
 ujson==1.33
